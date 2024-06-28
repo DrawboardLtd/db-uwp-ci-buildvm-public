@@ -12,8 +12,8 @@ Push-Location C:\Build
 Invoke-WebRequest https://aka.ms/vscollect.exe -OutFile C:\Build\collect.exe
 Invoke-WebRequest https://aka.ms/vs/17/release/vs_buildtools.exe -OutFile C:\Build\vs_buildtools.exe
 Invoke-WebRequest https://aka.ms/vs/17/release/channel -OutFile C:\Build\VisualStudio.chman
-Invoke-WebRequest "$ScriptSourceRepo/Scripts/CollectLogs.cmd" -OutFile C:\Build\CollectLogs.cmd
-Invoke-WebRequest "$ScriptSourceRepo/Scripts/InstallVS.cmd" -OutFile C:\Build\InstallVS.cmd
+Invoke-WebRequest "$ScriptSourceRepo/CollectLogs.cmd" -OutFile C:\Build\CollectLogs.cmd
+Invoke-WebRequest "$ScriptSourceRepo/InstallVS.cmd" -OutFile C:\Build\InstallVS.cmd
 Invoke-WebRequest https://marketplace.visualstudio.com/_apis/public/gallery/publishers/AdMediator/vsextensions/MicrosoftStoreServicesSDK/10.0.5/vspackage -OutFile C:\Build\MicrosoftStoreServicesSDK.msi
 
 "Configuring Virtual Machine"
