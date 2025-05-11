@@ -22,6 +22,14 @@ Add-MpPreference -ExclusionPath 'c:\', 'd:\' -ErrorAction Ignore;
 [Environment]::SetEnvironmentVariable("VSTS_AGENT_INPUT_WORK", "D:\a", "Machine")
 [Environment]::SetEnvironmentVariable("NUGET_PACKAGES", "D:\nuget", "Machine")
 
+$DesiredSize = (Get-PartitionSupportedSize -DriveLetter C).SizeMax
+$CurrentSize = (Get-Partition -DriveLetter C).Size
+
+if ($CurrentSize -lt $DesiredSize) {
+    "Expanding Disk Size to $DesiredSize"
+    Resize-Partition -DriveLetter C -Size $DesiredSize
+}
+
 # "Installing Visual Studio Build Tools"
 # ./InstallVS.cmd
 Pop-Location
