@@ -15,12 +15,17 @@ Invoke-WebRequest https://aka.ms/vs/17/release/channel -OutFile C:\Build\VisualS
 Invoke-WebRequest "$ScriptSourceRepo/CollectLogs.cmd" -OutFile C:\Build\CollectLogs.cmd
 Invoke-WebRequest "$ScriptSourceRepo/InstallVS.cmd" -OutFile C:\Build\InstallVS.cmd
 Invoke-WebRequest https://marketplace.visualstudio.com/_apis/public/gallery/publishers/AdMediator/vsextensions/MicrosoftStoreServicesSDK/10.0.5/vspackage -OutFile C:\Build\MicrosoftStoreServicesSDK.msi
+Invoke-WebRequest https://github.com/fontforge/fontforge/releases/download/20230101/FontForge-2023-01-01-Windows.exe -OutFile C:\Build\FontForge-Windows.exe
+
+"Installing FontForge"
+Start-Process -FilePath "C:\Build\FontForge-Windows.exe" -ArgumentList "/SILENT /VERYSILENT /NORESTART" -Wait
 
 "Configuring Virtual Machine"
 # Disable Windows Defender for build performance
 Add-MpPreference -ExclusionPath 'c:\', 'd:\' -ErrorAction Ignore;
 [Environment]::SetEnvironmentVariable("VSTS_AGENT_INPUT_WORK", "D:\a", "Machine")
 [Environment]::SetEnvironmentVariable("NUGET_PACKAGES", "D:\nuget", "Machine")
+[Environment]::SetEnvironmentVariable("FONT_FORGE", "C:\Program Files (x86)\FontForgeBuilds", "Machine")
 
 $DesiredSize = (Get-PartitionSupportedSize -DriveLetter C).SizeMax
 $CurrentSize = (Get-Partition -DriveLetter C).Size
