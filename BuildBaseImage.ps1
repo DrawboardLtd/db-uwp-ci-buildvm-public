@@ -2,7 +2,6 @@
 $ScriptSourceRepo = "https://raw.githubusercontent.com/DrawboardLtd/db-uwp-ci-buildvm-public/main"
 
 $ProgressPreference = "SilentlyContinue"
-Set-SConfig -AutoLaunch $false
 
 "Downloading Resources"
 if (-not (Test-Path "C:\Build")) {
