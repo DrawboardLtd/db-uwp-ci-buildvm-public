@@ -1,6 +1,8 @@
 ""
 $ScriptSourceRepo = "https://raw.githubusercontent.com/DrawboardLtd/db-uwp-ci-buildvm-public/main"
 
+$PowerShellVersion = "7.5.4";
+
 $ProgressPreference = "SilentlyContinue"
 
 "Downloading Resources"
@@ -21,6 +23,10 @@ Invoke-WebRequest "$ScriptSourceRepo/CollectLogs.cmd" -OutFile C:\Build\CollectL
 Invoke-WebRequest "$ScriptSourceRepo/InstallVS.cmd" -OutFile C:\Build\InstallVS.cmd
 
 Invoke-WebRequest https://marketplace.visualstudio.com/_apis/public/gallery/publishers/AdMediator/vsextensions/MicrosoftStoreServicesSDK/10.0.5/vspackage -OutFile C:\Build\MicrosoftStoreServicesSDK.msi
+Invoke-WebRequest https://github.com/PowerShell/PowerShell/releases/download/v$($PowerShellVersion)/PowerShell-$($PowerShellVersion)-win-x64.msi -OutFile C:\Build\PowerShell-win-x64.msi
+
+"Installing PowerShell $PowerShellVersion"
+Start-Process msiexec.exe -ArgumentList "/i C:\Build\PowerShell-win-x64.msi /quiet" -NoNewWindow -Wait
 
 "Configuring Virtual Machine"
 # Disable Windows Defender for build performance
