@@ -30,9 +30,9 @@ Start-Process msiexec.exe -ArgumentList "/i C:\Build\PowerShell-win-x64.msi /qui
 
 "Configuring Virtual Machine"
 # Disable Windows Defender for build performance
-Add-MpPreference -ExclusionPath 'c:\', 'd:\' -ErrorAction Ignore;
-[Environment]::SetEnvironmentVariable("VSTS_AGENT_INPUT_WORK", "D:\a", "Machine")
-[Environment]::SetEnvironmentVariable("NUGET_PACKAGES", "D:\nuget", "Machine")
+Add-MpPreference -ExclusionPath 'c:\' -ErrorAction Ignore;
+[Environment]::SetEnvironmentVariable("VSTS_AGENT_INPUT_WORK", "C:\a", "Machine")
+[Environment]::SetEnvironmentVariable("NUGET_PACKAGES", "C:\nuget", "Machine")
 
 $DesiredSize = (Get-PartitionSupportedSize -DriveLetter C).SizeMax
 $CurrentSize = (Get-Partition -DriveLetter C).Size
