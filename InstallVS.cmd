@@ -4,6 +4,9 @@ call C:\Build\CollectLogs.cmd C:\Build\2022\vs_buildtools.exe --wait --quiet --n
     --installPath "%ProgramFiles%\Microsoft Visual Studio\2022\BuildTools" ^
     --add Microsoft.VisualStudio.Workload.MSBuildTools ^
     --add Microsoft.VisualStudio.Workload.UniversalBuildTools ^
+    --add Microsoft.VisualStudio.Workload.VCTools ^
+    --add Microsoft.VisualStudio.Component.VC.Tools.x86.x64 ^
+    --add Microsoft.VisualStudio.Component.VC.Tools.ARM64 ^
     --add Microsoft.NetCore.Component.SDK ^
     --add Microsoft.NetCore.Component.Runtime.3.1 ^
     --add Microsoft.NetCore.Component.Runtime.6.0 ^
@@ -18,6 +21,9 @@ call C:\Build\CollectLogs.cmd C:\Build\2026\vs_buildtools.exe --wait --quiet --n
     --installPath "%ProgramFiles%\Microsoft Visual Studio\2026\BuildTools" ^
     --add Microsoft.VisualStudio.Workload.MSBuildTools ^
     --add Microsoft.VisualStudio.Workload.UniversalBuildTools ^
+    --add Microsoft.VisualStudio.Workload.VCTools ^
+    --add Microsoft.VisualStudio.Component.VC.Tools.x86.x64 ^
+    --add Microsoft.VisualStudio.Component.VC.Tools.ARM64 ^
     --add Microsoft.NetCore.Component.SDK ^
     --add Microsoft.NetCore.Component.Runtime.3.1 ^
     --add Microsoft.NetCore.Component.Runtime.6.0 ^
