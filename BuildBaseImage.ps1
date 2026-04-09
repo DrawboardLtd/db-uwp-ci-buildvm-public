@@ -36,12 +36,13 @@ Start-Process msiexec.exe -ArgumentList "/i C:\Build\PowerShell-win-x64.msi /qui
 Start-Process C:\Build\Git-x64.exe -ArgumentList "/VERYSILENT /NORESTART" -NoNewWindow -Wait
 
 "Installing CMake"
-Start-Process msiexec.exe -ArgumentList "/i C:\Build\cmake-x64.msi ADD_CMAKE_TO_PATH=System /quiet" -NoNewWindow -Wait
+Start-Process msiexec.exe -ArgumentList "/i C:\Build\cmake-x64.msi /quiet" -NoNewWindow -Wait
 
 "Installing Ninja"
 Expand-Archive C:\Build\ninja-win.zip -DestinationPath C:\Build\ninja
+
 $machinePath = [System.Environment]::GetEnvironmentVariable("Path", "Machine")
-[Environment]::SetEnvironmentVariable("Path", "$machinePath;C:\Build\ninja", "Machine")
+[Environment]::SetEnvironmentVariable("Path", "$machinePath;C:\Program Files\CMake\bin;C:\Build\ninja", "Machine")
 
 "Configuring Virtual Machine"
 # Disable Windows Defender for build performance
