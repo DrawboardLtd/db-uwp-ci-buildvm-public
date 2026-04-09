@@ -40,7 +40,8 @@ Start-Process msiexec.exe -ArgumentList "/i C:\Build\cmake-x64.msi ADD_CMAKE_TO_
 
 "Installing Ninja"
 Expand-Archive C:\Build\ninja-win.zip -DestinationPath C:\Build\ninja
-[Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:\Build\ninja", "Machine")
+$machinePath = [System.Environment]::GetEnvironmentVariable("Path", "Machine")
+[Environment]::SetEnvironmentVariable("Path", "$machinePath;C:\Build\ninja", "Machine")
 
 "Configuring Virtual Machine"
 # Disable Windows Defender for build performance
