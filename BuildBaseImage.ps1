@@ -25,8 +25,28 @@ Invoke-WebRequest "$ScriptSourceRepo/InstallVS.cmd" -OutFile C:\Build\InstallVS.
 Invoke-WebRequest https://marketplace.visualstudio.com/_apis/public/gallery/publishers/AdMediator/vsextensions/MicrosoftStoreServicesSDK/10.0.5/vspackage -OutFile C:\Build\MicrosoftStoreServicesSDK.msi
 Invoke-WebRequest https://github.com/PowerShell/PowerShell/releases/download/v$($PowerShellVersion)/PowerShell-$($PowerShellVersion)-win-x64.msi -OutFile C:\Build\PowerShell-win-x64.msi
 
+Invoke-WebRequest https://github.com/git-for-windows/git/releases/download/v2.53.0.windows.2/Git-2.53.0.2-64-bit.exe -OutFile C:\Build\Git-x64.exe
+Invoke-WebRequest https://github.com/ninja-build/ninja/releases/download/v1.13.2/ninja-win.zip -OutFile C:\Build\ninja-win.zip
+Invoke-WebRequest https://github.com/Kitware/CMake/releases/download/v4.3.1/cmake-4.3.1-windows-x86_64.msi -OutFile C:\Build\cmake-x64.msi
+Invoke-WebRequest https://github.com/ip7z/7zip/releases/download/26.00/7z2600-x64.msi -OutFile C:\Build\7zip-x64.msi
+
 "Installing PowerShell $PowerShellVersion"
 Start-Process msiexec.exe -ArgumentList "/i C:\Build\PowerShell-win-x64.msi /quiet" -NoNewWindow -Wait
+
+"Installing Git for Windows"
+Start-Process C:\Build\Git-x64.exe -ArgumentList "/VERYSILENT /NORESTART" -NoNewWindow -Wait
+
+"Installing CMake"
+Start-Process msiexec.exe -ArgumentList "/i C:\Build\cmake-x64.msi /quiet" -NoNewWindow -Wait
+
+"Installing 7-Zip"
+Start-Process msiexec.exe -ArgumentList "/i C:\Build\7zip-x64.msi /quiet" -NoNewWindow -Wait
+
+"Installing Ninja"
+Expand-Archive C:\Build\ninja-win.zip -DestinationPath C:\Build\ninja
+
+$machinePath = [System.Environment]::GetEnvironmentVariable("Path", "Machine")
+[Environment]::SetEnvironmentVariable("Path", "$machinePath;C:\Program Files\CMake\bin;C:\Build\ninja", "Machine")
 
 "Configuring Virtual Machine"
 # Disable Windows Defender for build performance
