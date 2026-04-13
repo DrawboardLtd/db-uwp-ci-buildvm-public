@@ -46,7 +46,7 @@ Start-Process msiexec.exe -ArgumentList "/i C:\Build\7zip-x64.msi /quiet" -NoNew
 Expand-Archive C:\Build\ninja-win.zip -DestinationPath C:\Build\ninja
 
 $machinePath = [System.Environment]::GetEnvironmentVariable("Path", "Machine")
-[Environment]::SetEnvironmentVariable("Path", "C:\Program Files\Git\bin;C:\Program Files\Git\usr\bin;C:\Program Files\7-Zip;C:\Program Files\CMake\bin;C:\Build\ninja;$machinePath", "Machine")
+[Environment]::SetEnvironmentVariable("Path", "C:\Program Files\Git\bin;C:\Program Files\7-Zip;C:\Program Files\CMake\bin;C:\Build\ninja;$machinePath", "Machine")
 
 "Configuring Virtual Machine"
 # Disable Windows Defender for build performance
