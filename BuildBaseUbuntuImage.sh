@@ -41,6 +41,12 @@ apt-get update && apt-get install -y ninja-build make
 ninja --version
 make --version
 
+info "# node & npm"
+apt-get install -y nodejs npm
+
+info "# dev libraries"
+apt-get install -y zlib1g-dev uuid-dev
+
 info "# dotnet"
 curl -fsSL https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb -o packages-microsoft-prod.deb
 dpkg -i packages-microsoft-prod.deb
