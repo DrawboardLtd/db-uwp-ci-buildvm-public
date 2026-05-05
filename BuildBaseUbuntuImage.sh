@@ -13,6 +13,7 @@ info "# install dejavu font"
 apt-get install fonts-dejavu-core -y
 
 info "# gcc 14"
+add-apt-repository ppa:ubuntu-toolchain-r/test -y
 apt-get update -y
 apt-get install gcc-14 g++-14 -y
 gcc-14 --version
