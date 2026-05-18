@@ -42,11 +42,20 @@ apt-get update && apt-get install -y ninja-build make
 ninja --version
 make --version
 
-info "# node & npm"
-apt-get install -y nodejs npm
-
 info "# dev libraries"
 apt-get install -y zlib1g-dev uuid-dev
+
+info "# Git LFS for test/assets"
+apt-get install -y git-lfs
+
+info "# node"
+apt-get remove -y nodejs libnode-dev libnode72 # remove conflicting Node packages first
+sudo apt-get autoremove -y
+
+curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+sudo apt install -y nodejs
+node -v
+npm -v
 
 info "# dotnet"
 curl -fsSL https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb -o packages-microsoft-prod.deb
