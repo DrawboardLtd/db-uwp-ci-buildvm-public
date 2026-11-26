@@ -31,6 +31,7 @@ call C:\Build\CollectLogs.cmd C:\Build\2026\vs_buildtools.exe --wait --quiet --n
     --add Microsoft.NetCore.Component.Runtime.8.0 ^
     --add Microsoft.NetCore.Component.Runtime.9.0 ^
     --add Microsoft.NetCore.Component.Runtime.10.0 ^
+    --add Microsoft.NetCore.Component.Runtime.11.0 ^
     --add Microsoft.VisualStudio.Component.Windows11SDK.26100 ^
     || IF "%ERRORLEVEL%"=="3010" EXIT 0
 
